@@ -1,4 +1,5 @@
 const { Category } = require('../models');
+const sequelize = require("../config/connection");
 
 const categoryData = [
   {

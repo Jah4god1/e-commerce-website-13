@@ -1,4 +1,5 @@
 const { Tag } = require('../models');
+const sequelize = require("../config/connection");
 
 const tagData = [
   {

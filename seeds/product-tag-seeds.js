@@ -1,4 +1,5 @@
 const { ProductTag } = require('../models');
+const sequelize = require("../config/connection");
 
 const productTagData = [
   {
