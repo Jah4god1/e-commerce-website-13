@@ -12,7 +12,7 @@ Category.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    category_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,6 +24,7 @@ Category.init(
     underscored: true,
     modelName: "category",
   }
+
 );
 
 module.exports = Category;

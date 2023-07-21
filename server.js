@@ -1,21 +1,17 @@
-// 
-const { Sequelize } = require('sequelize');
+const express = require('express');
+const routes = require('./routes');
+const sequelize = require('./config/connection');
 
-// Replace 'database', 'username', and 'password' with your actual MySQL credentials
-const sequelize = new Sequelize('ecommerce_db', 'root', '', {
-  host: 'localhost', // Replace with your MySQL server host if different
-  dialect: 'mysql', // Use 'mysql' or 'mysql2' based on the available Sequelize version
-  port: 3306, // Replace with your MySQL server port if different (default is 3306)
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// turn on routes
+app.use(routes);
+
+// turn on connection to db and server
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
 });
-
-// Test the connection
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-module.exports = sequelize;
